@@ -17,54 +17,75 @@ public class Robot
 		this.speed = speed;
 		this.orientation = orientation;
 	}
-	public String getOrientation(int orientation)
+	
+	 public String getName()
+	 {
+         return this.name;
+	 }
+	 
+	 public int getX()
+	 {
+         return this.x;
+	 }
+	 
+	 public int getY()
+	 {
+		 return this.y;
+	 }
+	 
+	 public int getSpeed()
+	 {
+		 return this.getSpeed();
+	 }
+	 
+	 public int getOrientation()
+	 {
+		 return this.orientation;
+	 }
+	 
+	public String newOrientation()
 	{
-		if((orientation == 360) || (orientation == -360))
+		if((this.orientation == 360) || (this.orientation == -360))
 		{
-			orientation = 0;
+			this.orientation = 0;
 		}
-		if((orientation==0) || (orientation == 360))
+		if((this.orientation==0) || (this.orientation == 360))
 		{
 			return "north";
 		}
-		else if((orientation==90) || (orientation ==-270 ))
+		else if((this.orientation==90) || (this.orientation ==-270 ))
 		{
 			return "east";
 		}
-		else if((orientation==180) || (orientation == -180))
+		else if((this.orientation==180) || (this.orientation == -180))
 		{
 			return "south";
 		}
-		else if((orientation==270) || (orientation == -90))
+		else if((this.orientation==270) || (this.orientation == -90))
 		{
 			return "west";
 		}
 		else
 			return "Invalid direction";
-		
 	}
-	public String positionOfXY(int x, int y, int speed, int orientation)
+	
+	public String positionOfXY()
 	{
-		if(getOrientation(orientation)=="north")
+		if(newOrientation()=="north")
 		{
-			x = x;
-			y = y+speed;
-			
+			this.y = y+speed;	
 		}
-		else if(getOrientation(orientation)=="east")
+		else if(newOrientation()=="east")
 		{
-			x = x+speed;
-			y = y;
+			this.x = x+speed;
 		}
-		else if(getOrientation(orientation)=="south")
+		else if(newOrientation()=="south")
 		{
-			x = x;
-			y = y-speed;
+			this.y = y-speed;
 		}
-		else if(getOrientation(orientation)=="west")
+		else if(newOrientation()=="west")
 		{
-			x = x-speed;
-			y = y;
+			this.x = x-speed;
 		}
 		return "("+x+","+y+")";
 		
@@ -74,24 +95,24 @@ public class Robot
 		if(direction=="left")
 		{
 			orientation = orientation - 90;
-			return  " If the Robot " +this.name+" turns "+ direction + " then the New Position = " + positionOfXY(this.x,this.y,this.speed,this.orientation)+" and Orientation = "+getOrientation(this.orientation);
+			return  " If the Robot " +this.name+" turns "+ direction + " then the New Position = " + positionOfXY()+" and Orientation = "+newOrientation();
 		}
 		if(direction=="right")
 		{
 			orientation = orientation + 90;
-			return " If the Robot "+this.name+" turns "+ direction + " then the New Position = " +positionOfXY(this.x,this.y,this.speed,this.orientation)+" and Orientation = "+getOrientation(this.orientation);	
+			return " If the Robot "+this.name+" turns "+ direction + " then the New Position = " +positionOfXY()+" and Orientation = "+newOrientation();	
 		}
 		else return "Invalid Position";	
 	}
-	public double distance(Robot r)
+	public double distance(Robot a1)
 	{
-		double dist = Math.sqrt((Math.pow((this.x-r.x), 2))+(Math.pow((this.y-r.y), 2)));
+		double dist = Math.sqrt((double)(Math.pow((this.x-a1.x), 2))+(Math.pow((this.y-a1.y), 2)));
 		return dist;
 	}
 	public String toString() 
 	{
 		return "Robot [Name=" + this.name + ", Position= [" + this.x+", " +this.y+"], Speed=" + this.speed + ", Orientation="
-				+ getOrientation(this.orientation) + "]";
+				+ newOrientation() + "]";
 	}
 
 
@@ -123,10 +144,10 @@ public class Robot
 		Robot a1 = new Robot(n,x,y,speed,ori);
 		System.out.println("Your robot details are " + a1);
 		System.out.println(r.name + " is at a distance of "+r.distance(a1)+" from " + a1.name);
-//		System.out.println("Enter the direction (left or right) for the Robot to turn ");
-//		String dir = sc.nextLine();
-//		System.out.println(dir);
-//		System.out.println(a1.Position(dir));
+		System.out.println("Enter the direction (left or right) for the Robot to turn ");
+		String dir = sc.nextLine();
+		//System.out.println(dir);
+		//System.out.println(a1.Position(dir));
 		
 	}
 
