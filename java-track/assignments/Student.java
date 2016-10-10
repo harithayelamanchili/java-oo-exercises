@@ -88,13 +88,15 @@ public double computeTuition()
 	// 1 credit = 20000/15;
 	
 	double tuition =1;
+	int a = credits%15;
+	int c = credits-a;
 	int credits  = this.getCredits();
-	if(credits > 15)
+	if(credits % 15==0)
 	{
-		tuition = 20000.0 + ((credits-15)*(1333.33));
-		//tuition = credits * 20000.0/15;
+		tuition = 20000.0 * (credits / 15);
 	}
-	else tuition = 20000.0;
+	
+		else tuition = (20000.0 * (c / 15)) + (a * 1333.33);
 	return  tuition;
 	
 }
@@ -108,16 +110,16 @@ public Student(String name, int studentID, double gpa, int credits)
 	
 }
 
-public Student createLegacy(Student s)
+public Student createLegacy(Student s, Student ss)
 {
-	String name = this.getName()+" "+s.getName();
-	int Id = this.getStudentID()+s.getStudentID();
-	double gpa  = (this.gpa+s.gpa)/2.0;
+	String name = s.getName()+" "+ss.getName();
+	int Id = s.getStudentID()+ss.getStudentID();
+	double gpa  = (s.gpa+ss.gpa)/2.0;
 	int credits = 0;
-	if(this.getCredits()>s.getCredits()) credits = this.getCredits();
-	else credits = s.getCredits();
-	Student ss = new Student(name, Id, gpa, credits);
-	return ss;	
+	if(s.getCredits()>ss.getCredits()) credits = s.getCredits();
+	else credits = ss.getCredits();
+	Student sss = new Student(name, Id, gpa, credits);
+	return sss;	
 }
 
 public String toString() 
