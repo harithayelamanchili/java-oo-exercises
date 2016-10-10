@@ -1,4 +1,4 @@
-package pset9;
+//package pset9;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -79,7 +79,7 @@ public class StudentAndCourseTest extends TestCase {
 			assertTrue("GPA not rounded", (s.getGPA() + "").length() < 6);
 		}
 	}
-
+ 
 	@Test
 	public void testComputeTuition() {
 		Student s = new Student("D", "S", 1);
