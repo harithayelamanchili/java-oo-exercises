@@ -16,6 +16,7 @@ public class Javagram
 		Filter filter = null;
 		Picture picture = null;
 		int filterID = 0;
+		String s = null;
 		Scanner in = new Scanner(System.in);
 		// prompt user for image to filter and validate input
 		do 
@@ -76,25 +77,34 @@ public class Javagram
 		if(fileName.equals(relPath))
 		{
 			System.out.println("Do you want to overwrite the original? enter  yes or  no");
-			String s = in.nextLine();
+			 s = in.next();
 
 			if(s.equals("no"))
 			{
 				System.out.println("Save image to (relative to " + dir + ") (type 'exit' to quit w/o saving):");
 				fileName = in.next();
+				String absFileName = dir + "\\" + fileName;
+				processed.save(absFileName);
+				System.out.println("Image saved to " + absFileName);
 			}
-		}
-			if (fileName.equals("exit")) 
-			{
-				System.out.println("Image not saved");
-			} 
-			else 
+			if(s.equals("yes"))
 			{
 				String absFileName = dir + "\\" + fileName;
 				processed.save(absFileName);
 				System.out.println("Image saved to " + absFileName);
-			}	
-		
+			}
+		}else 
+		{
+			String absFileName = dir + "\\" + fileName;
+			processed.save(absFileName);
+			System.out.println("Image saved to " + absFileName);
+		}	
+	
+			if (fileName.equals("exit")) 
+			{
+				System.out.println("Image not saved");
+			} 
+			
 
 		// close input scanner
 		in.close();               
